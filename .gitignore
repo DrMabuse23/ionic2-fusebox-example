@@ -28,7 +28,7 @@ plugins/android.json
 plugins/ios.json
 www/
 $RECYCLE.BIN/
-
+src/assets/fonts
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
