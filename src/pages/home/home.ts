@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Inject, Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /*
@@ -13,8 +13,7 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor() {
-    // public navCtrl: NavController, public navParams: NavParams
+  constructor(@Inject(NavController) public navCtrl: NavController, @Inject(NavParams) public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
