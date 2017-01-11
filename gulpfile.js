@@ -1,6 +1,8 @@
 const gulp = require('gulp');
 const fsbx = require('fuse-box');
+const flatten = require('gulp-flatten');
 const browserSync = require('browser-sync').create();
+const del = require('del');
 
 const DIST = 'www';
 const SRC = 'src';
@@ -55,6 +57,12 @@ const fuseBox = fsbx.FuseBox.init({
     ]
 });
 
+gulp.task('clean:dist', () => {
+  return del([
+    `${DIST}/*`
+  ]);
+});
+
 gulp.task('fusebox', () => {
     return fuseBox.bundle('>main.ts');
 });
@@ -76,7 +84,9 @@ gulp.task('copyIonic', () => {
 });
 
 gulp.task('index', () => {
-    return gulp.src('src/**/*.html').pipe(gulp.dest(DIST));
+  return gulp.src('src/**/*.html')
+    .pipe(flatten())
+    .pipe(gulp.dest(DIST));
 });
 
 gulp.task('fonts', () => {
