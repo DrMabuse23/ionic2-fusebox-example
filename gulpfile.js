@@ -47,7 +47,7 @@ const fuseBox = fsbx.FuseBox.init({
     plugins: [
         [
           fsbx.SassPlugin(getSassConfig()),
-          fsbx.CSSPlugin()
+          fsbx.CSSPlugin({write: true})
         ],
         //fsbx.TypeScriptHelpers,
         fsbx.JSONPlugin(),
@@ -91,7 +91,7 @@ gulp.task('assets', () => {
   return gulp.src('assets/**/*').pipe(gulp.dest(DIST));
 });
 
-gulp.task('watch', () => {
+gulp.task('watch',['fusebox', 'index', 'assets'], () => {
     gulp.watch('src/**/*.**', ['fusebox', 'index', 'assets']);
 });
 
@@ -100,5 +100,5 @@ gulp.task('default', ['fonts', 'fusebox', 'index', 'assets', 'copyIonic'], () =>
         server: { baseDir: DIST, directory: false },
         startPath: '/'
     });
-    gulp.watch(`${DIST}/**/*`).on('change', browserSync.reload);
+    gulp.watch(`${SRC}/**/*`).on('change', browserSync.reload);
 });
