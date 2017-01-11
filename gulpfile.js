@@ -46,8 +46,8 @@ const fuseBox = fsbx.FuseBox.init({
     outFile: `./${DIST}/build/app.js`,
     plugins: [
         [
-          fsbx.SassPlugin(),
-          fsbx.CSSPlugin({ write: true })
+          fsbx.SassPlugin(getSassConfig()),
+          fsbx.CSSPlugin()
         ],
         //fsbx.TypeScriptHelpers,
         fsbx.JSONPlugin(),
